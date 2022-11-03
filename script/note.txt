@@ -5,4 +5,4 @@ To run predicting scripts:
 python3 predicting.py --json_path '../data/data.json' --data_out_path '../data/parsed_prediction_data.csv' --prediction_out_path '../output/predicted_labels.csv'
 
 To predict SG-NEx data:
-python3 predicting.py --json_path '../../../data_SGNex/SGNex_MCF7_replicate4_run1.json' --data_out_path '../data/parsed_prediction_data_SGNex_MCF7_replicate4_run1.csv' --prediction_out_path '../output/predicted_labels_SGNex_MCF7_replicate4_run1.csv'
+python3 predicting.py --json_path '../data_SGNex/SGNex_MCF7_replicate4_run1.json' --data_out_path '../data_SGNex/parsed_prediction_data_SGNex_MCF7_replicate4_run1.csv' --prediction_out_path '../output/predicted_labels_SGNex_MCF7_replicate4_run1.csv'
