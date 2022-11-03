@@ -46,5 +46,5 @@ def train_lstm_model(sequence_kmers, label):
     model.fit(X, y, batch_size=BATCH_SIZE, class_weight=class_weight_dict, epochs=EPCOHS, validation_split = 0.1, verbose = 1)
     
     print('Saving LSTM model')
-    model.save('./model/lstm_kmers_sequence_model')
+    model.save('../model/lstm_kmers_sequence_model')
     return model
