@@ -77,7 +77,7 @@ $ pip install -r requirements.txt
 > #### If you would like to run the training script, proceed to **Step 6**. Else, to run the predicting script to make prediction, proceed to **Step 7**. 
 &nbsp;
 
-#### 6) Run the following command to execute training script in the default setting and replace the required path:
+#### 6) To execute training script in the default setting and replace the required path:
 ```sh
 $ python training.py --json_path `path_to_json` --info_path `path_to_info` 
 ```
@@ -87,7 +87,7 @@ $ python training.py --json_path `path_to_json` --info_path `path_to_info` --dat
 ```
 - The results of the model's training performance will also be printed.
 
-#### 7) Run the following command to execute the predicting script in the default setting and replace the required path:
+#### 7) To execute the predicting script in the default setting and replace the required path:
 ```sh
 $ python predicting.py --json_path `path_to_json` --prediction_out_path `path_to_save_prediction`
 ```
