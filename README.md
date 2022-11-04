@@ -79,7 +79,7 @@ $ pip install -r requirements.txt
 
 #### 6) To execute training script in the default setting and replace the required path:
 ```sh
-$ python training.py --json_path `path_to_json` --info_path `path_to_info` 
+$ python training.py --json_path '../data/data.json' --info_path '../data/data.info' 
 ```
 - To customise the file path, run:
 ```sh
@@ -89,7 +89,7 @@ $ python training.py --json_path `path_to_json` --info_path `path_to_info` --dat
 
 #### 7) To execute the predicting script in the default setting and replace the required path:
 ```sh
-$ python predicting.py --json_path `path_to_json` --prediction_out_path `path_to_save_prediction`
+$ python predicting.py --json_path '../data/data.json' --prediction_out_path '../output/predicted_labels.csv'
 ```
 - To customise the file path, run:
 ```sh

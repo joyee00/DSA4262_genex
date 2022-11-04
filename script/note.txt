@@ -1,5 +1,5 @@
 To run training scripts:
-python3 training.py --json_path '../data/data.json' --info_path '../data/data.info' --data_out_path '../data/parsed_train_data.csv'
+python3 training.py --json_path '../data/data.json' --info_path '../data/data.info'
 
 To run predicting scripts:
 python3 predicting.py --json_path '../data/data.json' --prediction_out_path '../output/predicted_labels.csv'
