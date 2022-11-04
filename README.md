@@ -73,8 +73,9 @@ $ cd script
 $ pip install -r requirements.txt
 ```
  
-   
+&nbsp;
 > #### If you would like to run the training script, proceed to **Step 6**. Else, to run the predicting script to make prediction, proceed to **Step 7**. 
+&nbsp;
 
 #### 6) Run the following command to execute training script in the default setting and replace the required path:
 ```sh
