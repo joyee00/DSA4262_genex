@@ -78,7 +78,7 @@ def train_rf_model(X_train, y_train):
     return rf
 
 
-def variable_selection(X_train, y_train):
+def variable_selection(X_train, y_train, var_path):
     print('Performing variable selection')
     #Adding constant column of ones, mandatory for sm.OLS model
     X_1_train = sm.add_constant(X_train)
@@ -138,8 +138,9 @@ def variable_selection(X_train, y_train):
     selected_features_rfe = temp[temp==True].index
     print(f'Selected features: {selected_features_rfe}')
 
+    print(f'Saving selected features as {var_path}')
     output_features = ",".join(map(str, selected_features_rfe))
-    with open("../data/selected_variables.txt", "w") as output:
+    with open(var_path, "w") as output:
         output.write(output_features)
 
     return selected_features_rfe
@@ -170,15 +171,16 @@ def main():
     parser = argparse.ArgumentParser(description='Training Script')
     parser.add_argument('--json_path', type=str, default='../data/data.json', help='Specify the path to json file here', required=True)
     parser.add_argument('--info_path', type=str, default='../data/data.info', help='Specify the path to info file here for labels', required=True)
-    parser.add_argument('--data_out_path', type=str, default='../data/parsed_train_data.csv', help='Specify the path to save processed train data', required=True)
-    parser.add_argument('--model_out_path', type=str, default='../model/rf_model_test.sav', help='Specify the path to save trained model', required=False)
+    parser.add_argument('--data_out_path', type=str, default='../data/parsed_train_data.csv', help='Specify the path to save processed train data', required=False)
+    parser.add_argument('--model_out_path', type=str, default='../model/rf_model.sav', help='Specify the path to save trained model', required=False)
+    parser.add_argument('--selected_var_out_path', type=str, default='../data/selected_variables.txt', help='Specify the path to save selected variables', required=False)
     args = vars(parser.parse_args())
 
     df_processed = prepare_train_data(json_path=args['json_path'], info_path=args['info_path'], result_path=args['data_out_path'])
 
     X_train, y_train, X_test, y_test = custom_train_test_split(df_processed)
 
-    selected_features = variable_selection(X_train, y_train)
+    selected_features = variable_selection(X_train, y_train, var_path=args['selected_var_out_path'])
     X_train_selected = X_train[selected_features]
     X_test_selected = X_test[selected_features]
 

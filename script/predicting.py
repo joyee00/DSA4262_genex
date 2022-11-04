@@ -22,10 +22,10 @@ def make_prediction(model, dataset, selected_variables, result_path):
 def main():
     parser = argparse.ArgumentParser(description='Testing Script')
     parser.add_argument('--json_path', type=str, default='../data/data.json', help='Specify the path to json file here', required=True)
-    parser.add_argument('--data_out_path', type=str, default='../data/parsed_prediction_data.csv', help='Specify the path to save processed test data', required=True)
     parser.add_argument('--model_path', type=str, default='../model/rf_model.sav', help='Specify the path to obtain trained model', required=False)
-    parser.add_argument('--prediction_out_path', type=str, default='../output/predicted_labels.csv', help='Specify the path to save predicted labels', required=True)
     parser.add_argument('--selected_variables_path', type=str, default='../data/selected_variables.txt', help='Specify the path to obtain selected variables', required=False)
+    parser.add_argument('--data_out_path', type=str, default='../data/parsed_prediction_data.csv', help='Specify the path to save processed test data', required=False)
+    parser.add_argument('--prediction_out_path', type=str, default='../output/predicted_labels.csv', help='Specify the path to save predicted labels', required=True)
     args = vars(parser.parse_args())
 
     df_processed = prepare_test_data(json_path = args['json_path'], result_path = args['data_out_path'])
