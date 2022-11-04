@@ -68,7 +68,7 @@ def train_rf_model(X_train, y_train):
     #             'random_state': [4262]}
 
     # rf = RandomForestClassifier(random_state = 4262)
-    # best_model = GridSearchCV(rf, rf_parameters, scoring='f1_macro', verbose=0)
+    # best_model = GridSearchCV(rf, rf_parameters, scoring='roc_auc', verbose=0)
     # best_model.fit(X_train, y_train)
 
     print('Done! Fitting model with best parameters.')
