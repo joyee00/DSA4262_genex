@@ -66,7 +66,7 @@ $ git clone https://github.com/joyee00/DSA4262_genex.git
 ```
 #### **4)** Navigate to the script directory:
 ```sh
-$ cd script
+$ cd DSA4262_genex/script
 ```
 #### **5)** Download the python packages required to run the python scripts:
 ```sh 
