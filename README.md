@@ -42,11 +42,11 @@ There are 2 python scripts created: [training.py](./script/training.py) and [pre
    
 
 # Instruction to run the files: 
-#### 1) Launch AWS and navigate to your home directory using the command: 
+#### **1)** Launch AWS and navigate to your home directory using the command: 
 ``` sh 
 $ cd ~ 
 ```
-#### 2) Create a virtual environment by running the following commands:   
+#### **2)** Create a virtual environment by running the following commands:   
 - Install `pip` and `virtualenv`:
 ``` sh
 $ sudo apt-get install python3-pip
@@ -60,40 +60,43 @@ $ virtualenv 'name'
 ```sh
 $ source 'name'/bin/activate
 ```
-#### 3) Git clone this repository using the command:
+#### **3)** Git clone this repository using the command:
 ```sh
 $ git clone https://github.com/joyee00/DSA4262_genex.git
 ```
-#### 4) Navigate to the script directory:
+#### **4)** Navigate to the script directory:
 ```sh
 $ cd script
 ```
-#### 5) Download the python packages required to run the python scripts:
+#### **5)** Download the python packages required to run the python scripts:
 ```sh 
 $ pip install -r requirements.txt
 ```
  
 &nbsp;
-> #### If you would like to run the training script, proceed to **Step 6**. Else, to run the predicting script to make prediction, proceed to **Step 7**. 
+> #### To run the predicting script to make prediction, proceed to **Step 7**. Note that there are already trained models in [model/](./model/), so it is not necessary to train model. If you would like to run the training script, proceed to **Step 6**. 
 &nbsp;
 
-#### 6) To execute training script in the default setting and replace the required path if necessary:
+#### **6)** To execute training script in the default setting:
+- The following command will execute training process on an example data, stored at [data/](./data/).
 ```sh
 $ python training.py --json_path '../data/data.json' --info_path '../data/data.info' 
 ```
-- To customise the file path, run:
+- To customise the file path, replace the required path if necessary and run:
 ```sh
 $ python training.py --json_path `path_to_json` --info_path `path_to_info` --data_out_path `path_to_save_data` --model_out_path `path_to_save_model` --selected_var_out_path `path_to_save_variables`
 ```
-- The results of the model's training performance will also be printed.
+- **The results of the model's training performance will also be printed.**
 
-#### 7) To execute the predicting script in the default setting and replace the required path if necessary:
+#### **7)** To execute the predicting script in the default setting:
+- The following command will execute predicting process on an example data, stored at [data/](./data/).
 ```sh
 $ python predicting.py --json_path '../data/data.json' --prediction_out_path '../output/predicted_labels.csv'
 ```
-- To customise the file path, run:
+- To customise the file path, replace the required path if necessary and run:
 ```sh
 $ python predicting.py --json_path `path_to_json` --prediction_out_path `path_to_save_prediction` --model_path `path_to_trained_model` --selected_var_out_path `path_to_saved_variables` --data_out_path `path_to_save_data`  
 ```
 
-- Predicted label will be stored in the [output/](./output/) folder, as specified in the output table above.
+- **Predicted label will be stored in the [output/](./output/) folder, as specified in the output table above.**
+
