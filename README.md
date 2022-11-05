@@ -74,7 +74,7 @@ $ pip install -r requirements.txt
 ```
  
 &nbsp;
-> #### To run the predicting script to make prediction, proceed to **Step 7**. Note that there are already trained models in [model/](./model/), so it is not necessary to train model. If you would like to run the training script, proceed to **Step 6**. 
+> #### To run the predicting script to make prediction, proceed to **Step 7**. Note that there are already trained models in [model/](./model/), so it is not necessary to train model. The predicting script will run the model saved in [model/](./model/) to make prediction. If you would like to run the training script, proceed to **Step 6**. The [data.json](./data/data.json) and [data.info](./data/data.info) stored in [data/](./data/) folder is only sample data for an example run of the scripts.
 &nbsp;
 
 #### **6)** To execute training script in the default setting:
