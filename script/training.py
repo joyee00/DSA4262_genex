@@ -2,7 +2,7 @@ import argparse
 import pickle
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import GroupShuffleSplit
+from sklearn.model_selection import GroupShuffleSplit, cross_val_score
 from sklearn.ensemble import RandomForestClassifier
 
 from sklearn.metrics import accuracy_score
@@ -80,56 +80,55 @@ def train_rf_model(X_train, y_train):
 
 def variable_selection(X_train, y_train, var_path):
     print('Performing variable selection')
-    #Adding constant column of ones, mandatory for sm.OLS model
-    X_1_train = sm.add_constant(X_train)
-    #Fitting sm.OLS model
-    model = sm.OLS(y_train,X_1_train).fit()
+    # # Adding constant column of ones, mandatory for sm.OLS model
+    # X_1_train = sm.add_constant(X_train)
+    # #Fitting sm.OLS model
+    # model = sm.OLS(y_train,X_1_train).fit()
 
-    #Backward Elimination
-    cols = list(X_train.columns)
-    pmax = 1
-    while (len(cols)>0):
-        p= []
-        X_1_train = X_train[cols]
-        X_1_train = sm.add_constant(X_1_train)
-        model = sm.OLS(y_train,X_1_train).fit()
-        p = pd.Series(model.pvalues.values[1:],index = cols)      
-        pmax = max(p)
-        feature_with_p_max = p.idxmax()
-        if(pmax>=0.05):
-            cols.remove(feature_with_p_max)
-        else:
-            break
-    selected_features_BE = cols
+    # #Backward Elimination
+    # cols = list(X_train.columns)
+    # pmax = 1
+    # while (len(cols)>0):
+    #     p= []
+    #     X_1_train = X_train[cols]
+    #     X_1_train = sm.add_constant(X_1_train)
+    #     model = sm.OLS(y_train,X_1_train).fit()
+    #     p = pd.Series(model.pvalues.values[1:],index = cols)      
+    #     pmax = max(p)
+    #     feature_with_p_max = p.idxmax()
+    #     if(pmax>=0.05):
+    #         cols.remove(feature_with_p_max)
+    #     else:
+    #         break
+    # selected_features_BE = cols
 
-    #Run 1 to 32 variables using rfe
-    nof_list = np.arange(1,len(selected_features_BE)+1)            
-    high_score = 0
-    #Variable to store the optimum features
-    nof = 0           
-    score_list = []
-    for n in range(len(nof_list)):
-        model = RandomForestClassifier(random_state = 42, n_estimators = 16, max_depth = 7)
-        rfe = RFE(estimator = model, n_features_to_select = nof_list[n])
-        X_train_rfe = rfe.fit_transform(X_train,y_train)
-        model.fit(X_train_rfe,y_train)
-        
-        predicted = model.predict(X_train_rfe)
-        predicted_proba = model.predict_proba(X_train_rfe)[::,1]
-        score = roc_auc_score(y_train, predicted_proba)
+    # # Run 1 to 32 variables using rfe
+    # nof_list = np.arange(1,len(selected_features_BE)+1)            
+    # high_score = 0
+    # #Variable to store the optimum features
+    # nof = 0           
+    # score_list = []
+    # for n in range(len(nof_list)):
+    #     model = RandomForestClassifier(random_state = 42, n_estimators = 16, max_depth = 7)
+    #     rfe = RFE(estimator = model, n_features_to_select = nof_list[n])
+    #     X_train_rfe = rfe.fit_transform(X_train,y_train)
+ 
+    #     # to obtain cross validation roc_auc for comparison
+    #     model = RandomForestClassifier(random_state = 42, n_estimators = 16, max_depth = 7)
+    #     score = np.mean(cross_val_score(model, X_train_rfe, y_train, scoring='roc_auc'))
 
-        score_list.append(score)
-        if(score>high_score):
-            high_score = score
-            nof = nof_list[n]
+    #     score_list.append(score)
+    #     if(score>high_score):
+    #         high_score = score
+    #         nof = nof_list[n]
 
-    print("Optimum number of features: %d" %nof)
-    print("Score with %d features: %f" % (nof, high_score))
+    # print("Optimum number of features: %d" %nof) # 19
+    # print("Score with %d features: %f" % (nof, high_score))
 
     cols = list(X_train.columns)
     model = RandomForestClassifier(random_state = 42, n_estimators = 16, max_depth = 7)
     #Initializing RFE model
-    rfe = RFE(estimator = model, n_features_to_select = nof)             
+    rfe = RFE(estimator = model, n_features_to_select = 19)             
     #Transforming data using RFE
     X_rfe = rfe.fit_transform(X_train,y_train)  
     #Fitting the data to model
